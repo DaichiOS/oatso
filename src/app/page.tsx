@@ -1,103 +1,79 @@
-import Image from "next/image";
+import BackgroundPattern from '@/components/BackgroundPattern';
+import BottomStrip from '@/components/BottomStrip';
+import BrandLogo from '@/components/BrandLogo';
+import JarDisplay from '@/components/JarDisplay';
+import SloganElement from '@/components/SloganElement';
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  // Array of slogan configurations
+  const slogans = [
+    // Original slogans
+    { position: { top: '12%', right: '10%' }, width: 'w-[160px]', mdWidth: 'md:w-[200px]', rotation: 6, opacity: 0.5 },
+    { position: { top: '28%', left: '8%' }, width: 'w-[140px]', mdWidth: 'md:w-[180px]', rotation: -8, opacity: 0.4 },
+    { position: { top: '40%', left: '12%' }, width: 'w-[120px]', mdWidth: 'md:w-[150px]', rotation: 12, opacity: 0.35 },
+    { position: { top: '35%', right: '15%' }, width: 'w-[130px]', mdWidth: 'md:w-[170px]', rotation: -15, opacity: 0.3 },
+    { position: { top: '55%', left: '20%' }, width: 'w-[110px]', mdWidth: 'md:w-[140px]', rotation: 20, opacity: 0.25 },
+    { position: { top: '48%', right: '22%' }, width: 'w-[120px]', mdWidth: 'md:w-[160px]', rotation: -10, opacity: 0.35 },
+    { position: { bottom: '32%', left: '15%' }, width: 'w-[130px]', mdWidth: 'md:w-[170px]', rotation: -5, opacity: 0.4 },
+    { position: { bottom: '38%', right: '8%' }, width: 'w-[150px]', mdWidth: 'md:w-[190px]', rotation: 8, opacity: 0.45 },
+    { position: { bottom: '45%', left: '40%' }, width: 'w-[140px]', mdWidth: 'md:w-[180px]', rotation: 15, opacity: 0.3 },
+    { position: { top: '25%', left: '35%' }, width: 'w-[130px]', mdWidth: 'md:w-[160px]', rotation: -12, opacity: 0.25 },
+    
+    // Previously added slogans
+    { position: { top: '5%', left: '30%' }, width: 'w-[100px]', mdWidth: 'md:w-[130px]', rotation: 18, opacity: 0.2 },
+    { position: { top: '18%', right: '30%' }, width: 'w-[110px]', mdWidth: 'md:w-[140px]', rotation: -22, opacity: 0.3 },
+    { position: { top: '50%', left: '48%' }, width: 'w-[90px]', mdWidth: 'md:w-[120px]', rotation: 5, opacity: 0.15 },
+    { position: { bottom: '15%', left: '5%' }, width: 'w-[120px]', mdWidth: 'md:w-[150px]', rotation: 10, opacity: 0.25 },
+    { position: { bottom: '20%', right: '25%' }, width: 'w-[100px]', mdWidth: 'md:w-[130px]', rotation: -14, opacity: 0.35 },
+    { position: { top: '7%', left: '60%' }, width: 'w-[95px]', mdWidth: 'md:w-[125px]', rotation: 8, opacity: 0.2 },
+    { position: { top: '62%', left: '3%' }, width: 'w-[115px]', mdWidth: 'md:w-[145px]', rotation: -7, opacity: 0.3 },
+    { position: { top: '68%', right: '5%' }, width: 'w-[105px]', mdWidth: 'md:w-[135px]', rotation: 15, opacity: 0.25 },
+    { position: { top: '3%', right: '3%' }, width: 'w-[85px]', mdWidth: 'md:w-[115px]', rotation: -20, opacity: 0.2 },
+    { position: { top: '15%', left: '22%' }, width: 'w-[95px]', mdWidth: 'md:w-[125px]', rotation: 25, opacity: 0.15 },
+    { position: { bottom: '25%', left: '28%' }, width: 'w-[110px]', mdWidth: 'md:w-[140px]', rotation: -18, opacity: 0.4 },
+    
+    // New center slogans (6 more)
+    { position: { top: '32%', left: '45%' }, width: 'w-[125px]', mdWidth: 'md:w-[155px]', rotation: 7, opacity: 0.35 },
+    { position: { top: '43%', left: '30%' }, width: 'w-[105px]', mdWidth: 'md:w-[135px]', rotation: -11, opacity: 0.25 },
+    { position: { top: '58%', right: '38%' }, width: 'w-[115px]', mdWidth: 'md:w-[145px]', rotation: 14, opacity: 0.3 },
+    { position: { bottom: '42%', right: '33%' }, width: 'w-[100px]', mdWidth: 'md:w-[130px]', rotation: -16, opacity: 0.2 },
+    { position: { top: '20%', left: '48%' }, width: 'w-[90px]', mdWidth: 'md:w-[120px]', rotation: 22, opacity: 0.15 },
+    { position: { bottom: '35%', left: '50%' }, width: 'w-[110px]', mdWidth: 'md:w-[140px]', rotation: -9, opacity: 0.25 },
+  ];
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+  return (
+    <div className="flex flex-col h-screen bg-[rgb(245,151,148)] relative overflow-hidden">
+      {/* Background subtle pattern */}
+      <BackgroundPattern />
+      
+      {/* Main logo section - moved higher */}
+      <div className="absolute top-[1%] left-[5%] z-30 flex flex-col drop-shadow-xl">
+        {/* Logo */}
+        <BrandLogo />
+      </div>
+      
+      {/* Render all slogans from the array */}
+      {slogans.map((slogan, index) => (
+        <SloganElement
+          key={index}
+          position={slogan.position}
+          width={slogan.width}
+          mdWidth={slogan.mdWidth}
+          rotation={slogan.rotation}
+          opacity={slogan.opacity}
+        />
+      ))}
+
+      {/* Main content area - empty but maintains layout spacing */}
+      <div className="flex-1 relative z-10"></div>
+
+      {/* Bottom color strip */}
+      <BottomStrip />
+
+      {/* Jars display at bottom - moved down */}
+      <div className="absolute w-full bottom-0 left-0 z-30">
+        <JarDisplay />
+      </div>
     </div>
   );
 }
