@@ -25,7 +25,7 @@ export default function BrandLogo() {
           <div className="relative">
             {/* Logo image - larger and bolder */}
             <Image 
-              src="/logos/oatso.png"
+              src="/logos/oatso2.png"
               alt="Oatso logo"
               width={1500}
               height={600}

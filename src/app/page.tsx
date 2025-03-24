@@ -3,6 +3,7 @@ import BottomStrip from '@/components/BottomStrip';
 import BrandLogo from '@/components/BrandLogo';
 import JarDisplay from '@/components/JarDisplay';
 import SloganElement from '@/components/SloganElement';
+import WaitlistButton from '@/components/WaitlistButton';
 
 export default function Home() {
   // Array of slogan configurations
@@ -46,10 +47,15 @@ export default function Home() {
       {/* Background subtle pattern */}
       <BackgroundPattern />
       
-      {/* Main logo section - moved higher */}
-      <div className="absolute top-[1%] left-[5%] z-30 flex flex-col drop-shadow-xl">
+      {/* Main logo section - centered horizontally */}
+      <div className="absolute top-[1%] left-1/2 transform -translate-x-1/2 z-30 flex flex-col drop-shadow-xl">
         {/* Logo */}
         <BrandLogo />
+      </div>
+      
+      {/* Waitlist Button - top right with better positioning */}
+      <div className="absolute top-6 md:top-8 right-6 md:right-10 z-50">
+        <WaitlistButton />
       </div>
       
       {/* Render all slogans from the array */}
